@@ -1,3 +1,5 @@
+import './ProgressHeader.css'
+
 function ProgressHeader({amount, studied}) {
     let progress = Math.round(studied / amount * 100)
 
@@ -8,7 +10,13 @@ function ProgressHeader({amount, studied}) {
                 <p>Изучено: {studied}</p>
             </div>
 
-            <span className="progress-bar">{progress}%</span>
+            <div className="progress-bar-container">
+                <div
+                    className="progress-bar-fill"
+                    style={{width: `${progress}%`}}
+                ></div>
+            </div>
+            <span className="progress-bar-text">{progress}%</span>
         </div>
     );
 }
