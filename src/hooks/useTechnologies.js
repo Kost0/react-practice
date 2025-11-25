@@ -17,6 +17,30 @@ const initialTechnologies = [
         notes: '',
         category: 'backend'
     },
+    {
+        id: 3,
+        title: 'React hooks',
+        description: 'Написание своих хуков',
+        status: 'not-started',
+        notes: '',
+        category: 'frontend'
+    },
+    {
+        id: 4,
+        title: 'Data bases',
+        description: 'Работа с базами данных',
+        status: 'not-started',
+        notes: '',
+        category: 'backend'
+    },
+    {
+        id: 5,
+        title: 'Go',
+        description: 'Написание серверных приложений',
+        status: 'not-started',
+        notes: '',
+        category: 'backend'
+    },
 ]
 
 function useTechnologies() {
@@ -38,6 +62,12 @@ function useTechnologies() {
         );
     };
 
+    const updateAllStatuses = (newStatus) => {
+        setTechnologies(prev =>
+            prev.map(tech => ( {...tech, status: newStatus }))
+        );
+    };
+
     const calculateProgress = () => {
         if (technologies.length === 0) return 0;
         const completed = technologies.filter(tech => tech.status === 'completed').length;
@@ -48,6 +78,7 @@ function useTechnologies() {
         technologies,
         updateStatus,
         updateNotes,
+        updateAllStatuses,
         progress: calculateProgress()
     };
 }

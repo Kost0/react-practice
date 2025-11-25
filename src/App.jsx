@@ -6,31 +6,29 @@ import useTechnologies from "./hooks/useTechnologies.js";
 import ProgressBar from "./components/ProgressBar.jsx";
 
 function App() {
-    const { technologies, updateStatus, updateNotes, progress } = useTechnologies();
+    const { technologies, updateStatus, updateNotes, updateAllStatuses, progress } = useTechnologies();
 
     const changeStatus = (id) => {
-        updateStatus(prev => prev.map(tech => {
-            if (tech.id === id) {
-                let newStatus;
-                if (tech.status === 'not-started') {
-                    newStatus = 'in-progress'
-                } else if (tech.status === 'in-progress') {
-                    newStatus = 'completed'
-                } else {
-                    newStatus = 'not-started'
-                }
-                return {...tech, status: newStatus}
-            }
-            return tech;
-        }))
+        const tech = technologies.find(t => t.id === id);
+        if (!tech) return;
+
+        let newStatus;
+        if (tech.status === 'not-started') {
+            newStatus = 'in-progress'
+        } else if (tech.status === 'in-progress') {
+            newStatus = 'completed'
+        } else {
+            newStatus = 'not-started'
+        }
+        updateStatus(id, newStatus);
     };
 
     const markAllCompleted = () => {
-        updateStatus(prev => prev.map(tech => ({...tech, status: 'completed'})));
+        updateAllStatuses('completed')
     };
 
     const resetAllStatuses = () => {
-        updateStatus(prev => prev.map(tech => ({...tech, status: 'not-started'})));
+        updateAllStatuses('not-started')
     };
 
     const pickRandomTechnology = () => {
@@ -58,7 +56,7 @@ function App() {
                 <ProgressBar
                     progress={progress}
                     label="Общий прогресс"
-                    color="#4CAF50"
+                    color="#6e65c6"
                     animated={true}
                     height={20}
                 />
@@ -76,7 +74,7 @@ function App() {
                         <TechnologyCard
                             key={tech.id}
                             technology={tech}
-                            onStatusChange={updateStatus}
+                            onStatusChange={changeStatus}
                             onNotesChange={updateNotes}
                         />
                     ))}

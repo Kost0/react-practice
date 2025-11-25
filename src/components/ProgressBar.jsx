@@ -1,3 +1,5 @@
+import './ProgressBar.css'
+
 function ProgressBar({
     progress,
     label= '',
@@ -12,7 +14,7 @@ function ProgressBar({
         <div className="progress-bar-container">
             { (label || showPercentage) && (
                 <div className="progress-bar-header">
-                    {label && <span className="progress-label">{label}</span>}
+                    {label && <span className="progress-label">{label}:</span>}
                     {showPercentage && (
                         <span className="progress-percentage"> {normalizedProgress}%</span>
                     )}
