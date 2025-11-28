@@ -31,18 +31,6 @@ function App() {
         updateAllStatuses('not-started')
     };
 
-    const pickRandomTechnology = () => {
-        const notStarted = technologies.filter(tech => tech.status === 'not-started');
-        if (notStarted.length === 0) {
-            alert('Все технологии уже изучены');
-            return;
-        }
-        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
-        alert(`Следующая технология для изучения: ${randomTech.title}`);
-
-        changeStatus(randomTech.id);
-    };
-
     /*useEffect(() => {
         localStorage.setItem('techTrackerData', JSON.stringify(technologies));
         console.log('Данные сохранены в localStorage');
@@ -66,7 +54,7 @@ function App() {
                 <QuickActions
                     onMarkAllCompleted={markAllCompleted}
                     onResetAllStatuses={resetAllStatuses}
-                    onPickRandomTechnology={pickRandomTechnology}
+                    technologies={technologies}
                 />
 
                 <div className="technology-grid">

@@ -11,6 +11,19 @@ function QuickActions({onMarkAllCompleted, onResetAllStatuses, technologies}) {
             technologies: technologies
         };
         const dataStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([dataStr], {type: 'application/json' });
+        const a = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+
+        a.href = url;
+        a.download = 'data.json';
+
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
         console.log('Данные для экспорта:', dataStr)
         setShowExportModal(true);
     };
