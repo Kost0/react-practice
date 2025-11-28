@@ -1,74 +1,30 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import TechnologyList from './pages/TechnologyList';
+import TechnologyDetail from './pages/TechnologyDetail';
+import AddTechnology from './pages/AddTechnology';
+import Statistics from './pages/Statistics';
+import Settings from './pages/Settings';
 import './App.css';
-//import { useEffect } from "react";
-import TechnologyCard from "./components/TechnologyCard.jsx";
-import QuickActions from "./components/QuickActions.jsx";
-import useTechnologies from "./hooks/useTechnologies.js";
-import ProgressBar from "./components/ProgressBar.jsx";
 
 function App() {
-    const { technologies, updateStatus, updateNotes, updateAllStatuses, progress } = useTechnologies();
-
-    const changeStatus = (id) => {
-        const tech = technologies.find(t => t.id === id);
-        if (!tech) return;
-
-        let newStatus;
-        if (tech.status === 'not-started') {
-            newStatus = 'in-progress'
-        } else if (tech.status === 'in-progress') {
-            newStatus = 'completed'
-        } else {
-            newStatus = 'not-started'
-        }
-        updateStatus(id, newStatus);
-    };
-
-    const markAllCompleted = () => {
-        updateAllStatuses('completed')
-    };
-
-    const resetAllStatuses = () => {
-        updateAllStatuses('not-started')
-    };
-
-    /*useEffect(() => {
-        localStorage.setItem('techTrackerData', JSON.stringify(technologies));
-        console.log('Данные сохранены в localStorage');
-    }, [technologies]);*/
-
-
     return (
-        <div className="App">
-            <header className="app-header">
-                <h1>Трекер изучения технологий</h1>
-                <ProgressBar
-                    progress={progress}
-                    label="Общий прогресс"
-                    color="#6e65c6"
-                    animated={true}
-                    height={20}
-                />
-            </header>
-
-            <main className="app-main">
-                <QuickActions
-                    onMarkAllCompleted={markAllCompleted}
-                    onResetAllStatuses={resetAllStatuses}
-                    technologies={technologies}
-                />
-
-                <div className="technology-grid">
-                    {technologies.map(tech => (
-                        <TechnologyCard
-                            key={tech.id}
-                            technology={tech}
-                            onStatusChange={changeStatus}
-                            onNotesChange={updateNotes}
-                        />
-                    ))}
-                </div>
-            </main>
-        </div>
+        <Router>
+            <div className="App">
+                <Navigation />
+                <main className="main-content">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/technologies" element={<TechnologyList />} />
+                        <Route path="/technology/:techId" element={<TechnologyDetail />} />
+                        <Route path="/add-technology" element={<AddTechnology />} />
+                        <Route path="/statistics" element={<Statistics />} />
+                        <Route path="/settings" element={<Settings />} />
+                    </Routes>
+                </main>
+            </div>
+        </Router>
     );
 }
 

@@ -1,9 +1,9 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import './TechnologyDetail.css';
 
 function TechnologyDetail() {
     const { techId } = useParams();
-    const navigate = useNavigate();
     const [technology, setTechnology] = useState(null);
 
     useEffect(() => {
@@ -52,6 +52,11 @@ function TechnologyDetail() {
                 <div className="detail-section">
                     <h3>Описание</h3>
                     <p>{technology.description}</p>
+                </div>
+
+                <div className="detail-section">
+                    <h3>Категория</h3>
+                    <p style={{ textTransform: 'capitalize' }}>{technology.category}</p>
                 </div>
 
                 <div className="detail-section">

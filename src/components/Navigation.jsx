@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
+import './Navigation.css';
 
 function Navigation() {
     const location = useLocation();
@@ -34,6 +35,22 @@ function Navigation() {
                         className={location.pathname === '/add-technology' ? 'active' : ''}
                     >
                         Добавить технологию
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/statistics"
+                        className={location.pathname === '/statistics' ? 'active' : ''}
+                    >
+                        Статистика
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/settings"
+                        className={location.pathname === '/settings' ? 'active' : ''}
+                    >
+                        Настройки
                     </Link>
                 </li>
             </ul>

@@ -1,6 +1,6 @@
 import './QuickActions.css'
 import { useState } from 'react'
-import Modal from './Modal'
+import Modal from './Modal.jsx'
 
 function QuickActions({onMarkAllCompleted, onResetAllStatuses, technologies}) {
     const [showExportModal, setShowExportModal] = useState(false);
