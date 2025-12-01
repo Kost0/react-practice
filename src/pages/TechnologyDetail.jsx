@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import ResourceLoader from '../components/ResourceLoader';
 import './TechnologyDetail.css';
 
 function TechnologyDetail() {
@@ -90,6 +91,15 @@ function TechnologyDetail() {
                     </div>
                 )}
             </div>
+
+            <ResourceLoader
+                techId={technology.id}
+                techTitle={technology.title}
+                existingResources={technology.resources || []}
+                onResourcesUpdated={(newResources) => {
+                    console.log('Добавлено ресурсов:', newResources.length);
+                }}
+            />
         </div>
     );
 }

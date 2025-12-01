@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import TechnologyList from './pages/TechnologyList';
@@ -7,19 +6,11 @@ import TechnologyDetail from './pages/TechnologyDetail';
 import AddTechnology from './pages/AddTechnology';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
+import ApiDemo from './pages/ApiDemo';
+import TechnologySearch from './pages/TechnologySearch';
 import './App.css';
 
 function App() {
-    useEffect(() => {
-        const savedSettings = localStorage. getItem('appSettings');
-        if (savedSettings) {
-            const { theme } = JSON. parse(savedSettings);
-            document.body.setAttribute('data-theme', theme || 'light');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-        }
-    }, []);
-
     return (
         <Router>
             <div className="App">
@@ -32,6 +23,8 @@ function App() {
                         <Route path="/add-technology" element={<AddTechnology />} />
                         <Route path="/statistics" element={<Statistics />} />
                         <Route path="/settings" element={<Settings />} />
+                        <Route path="/api-demo" element={<ApiDemo />} />
+                        <Route path="/search" element={<TechnologySearch />} />
                     </Routes>
                 </main>
             </div>

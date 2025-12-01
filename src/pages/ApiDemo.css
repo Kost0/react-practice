@@ -1,0 +1,120 @@
+.api-demo-page {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.api-demo-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.spinner-large {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #e2e8f0;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.api-demo-loading p {
+    color: #718096;
+    font-size: 1.2em;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.refresh-btn {
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.api-error {
+    background: #fff5f5;
+    border: 2px solid #fc8181;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.api-error h3 {
+    color: #c53030;
+    margin: 0 0 10px 0;
+}
+
+.api-error p {
+    color: #742a2a;
+    margin: 0 0 15px 0;
+}
+
+.retry-btn {
+    padding: 10px 20px;
+    background: #f56565;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #e53e3e;
+}
+
+[data-theme="dark"] .api-demo-loading p {
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .spinner-large {
+    border-color: #4a5568;
+    border-top-color: #667eea;
+}
+
+[data-theme="dark"] .api-error {
+    background: #742a2a;
+    border-color: #c53030;
+}
+
+[data-theme="dark"] .api-error h3 {
+    color: #fc8181;
+}
+
+[data-theme="dark"] .api-error p {
+    color: #feb2b2;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

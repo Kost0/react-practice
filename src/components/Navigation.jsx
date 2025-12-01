@@ -47,6 +47,22 @@ function Navigation() {
                 </li>
                 <li>
                     <Link
+                        to="/api-demo"
+                        className={location.pathname === '/api-demo' ? 'active' : ''}
+                    >
+                        API Demo
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/search"
+                        className={location.pathname === '/search' ? 'active' : ''}
+                    >
+                        Поиск
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         to="/settings"
                         className={location.pathname === '/settings' ? 'active' : ''}
                     >

@@ -1,14 +1,13 @@
 .technology-card {
-    background: var(--card-bg);
+    background: white;
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 10px 25px var(--shadow-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-left: 4px solid transparent;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .technology-card::before {
@@ -26,21 +25,108 @@
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3), 0 6px 6px rgba(118, 75, 162, 0.2);
 }
 
-.technology-card h3 {
-    margin: 0 0 12px 0;
-    color: var(--text-primary);
-    font-size: 1.5em;
-    font-weight: 600;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
-.technology-card p {
+.technology-card h3 {
+    margin: 0;
+    color: #2d3748;
+    font-size: 1.5em;
+    font-weight: 600;
+    flex: 1;
+}
+
+.difficulty-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.difficulty-badge.beginner {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.difficulty-badge.intermediate {
+    background: #fef3c7;
+    color: #78350f;
+}
+
+.difficulty-badge.advanced {
+    background: #fecaca;
+    color: #7f1d1d;
+}
+
+.card-description {
     margin: 8px 0;
-    color: var(--text-secondary);
+    color: #4a5568;
     line-height: 1.6;
 }
 
-.technology-card p:last-child {
+.card-category {
+    margin: 8px 0;
+    color: #4a5568;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.card-resources {
+    margin: 16px 0;
+    padding: 12px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+}
+
+.resources-label {
+    display: block;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.resources-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resources-list li {
+    margin-bottom: 4px;
+    font-size: 0.85em;
+}
+
+.resources-list a {
+    color: #4a5568;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resources-list a:hover {
+    color: #667eea;
+    text-decoration: underline;
+}
+
+.more-resources {
+    color: #718096;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.status-section {
     margin-top: 16px;
+}
+
+.status-label {
     font-weight: 600;
     padding: 8px 12px;
     border-radius: 6px;
@@ -51,17 +137,17 @@
     border-left-color: #667eea
 }
 
-.technology-card[data-status="completed"] p:last-child {
-    background: rgba(102, 126, 234, 0.15);
-    color: #667eea;
+.technology-card[data-status="completed"] .status-label {
+    background: #e6f0ff;
+    color: #764ba2;
 }
 
 .technology-card[data-status="in-progress"]{
     border-left-color: #a0aec0;
 }
 
-.technology-card[data-status="in-progress"] p:last-child {
-    background: rgba(118, 75, 162, 0.15);
+.technology-card[data-status="in-progress"] .status-label {
+    background: #f3e6ff;
     color: #764ba2;
 }
 
@@ -69,7 +155,52 @@
     border-left-color: #a0aec0;
 }
 
-.technology-card[data-status="not-started"] p:last-child {
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
+.technology-card[data-status="not-started"] .status-label {
+    background: #edf2f7;
+    color: #718096;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .technology-card {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .technology-card h3 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .card-description,
+[data-theme="dark"] .card-category {
+    color: #cbd5e0;
+}
+
+[data-theme="dark"] .card-resources {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .resources-list a {
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .resources-list a:hover {
+    color: #667eea;
+}
+
+[data-theme="dark"] .more-resources {
+    color: #718096;
+}
+
+[data-theme="dark"] .technology-card[data-status="completed"] .status-label {
+    background: #2c5282;
+    color: #90cdf4;
+}
+
+[data-theme="dark"] .technology-card[data-status="in-progress"] .status-label {
+    background: #44337a;
+    color: #d6bcfa;
+}
+
+[data-theme="dark"] .technology-card[data-status="not-started"] .status-label {
+    background: #4a5568;
+    color: #cbd5e0;
 }
