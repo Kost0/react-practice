@@ -1,11 +1,11 @@
 .notes-section {
     margin-top: 20px;
     padding-top: 20px;
-    border-top: 2px solid #e2e8f0;
+    border-top: 2px solid var(--border-color);
 }
 
 .notes-section h4 {
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 1em;
     margin-bottom: 10px;
     font-weight: 600;
@@ -14,14 +14,15 @@
 .notes-section textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: 0.95em;
     resize: vertical;
     transition: all 0.3s ease;
-    color: #2d3748;
+    color: var(--text-primary);
+    background: var(--input-bg);
     line-height: 1.5;
 }
 
@@ -32,12 +33,12 @@
 }
 
 .notes-section textarea::placeholder {
-    color: #a0aec0;
+    color: var(--text-muted);
 }
 
 .notes-hint {
     margin-top: 8px;
     font-size: 0.85em;
-    color: #718096;
+    color: var(--text-secondary);
     font-style: italic;
 }

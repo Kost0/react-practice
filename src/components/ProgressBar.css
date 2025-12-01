@@ -1,9 +1,9 @@
 .progress-bar-container {
-    background: white;
+    background: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
 .progress-bar-header {
@@ -12,14 +12,14 @@
 
 .progress-label {
     margin: 0 0 20px 0;
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 1.5em;
     font-weight: 600;
 }
 
 .progress-percentage {
     margin: 0 0 20px 0;
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 1.3em;
     font-weight: 600;
 }

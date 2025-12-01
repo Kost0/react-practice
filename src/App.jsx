@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import TechnologyList from './pages/TechnologyList';
@@ -9,6 +10,16 @@ import Settings from './pages/Settings';
 import './App.css';
 
 function App() {
+    useEffect(() => {
+        const savedSettings = localStorage. getItem('appSettings');
+        if (savedSettings) {
+            const { theme } = JSON. parse(savedSettings);
+            document.body.setAttribute('data-theme', theme || 'light');
+        } else {
+            document.body.setAttribute('data-theme', 'light');
+        }
+    }, []);
+
     return (
         <Router>
             <div className="App">

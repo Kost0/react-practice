@@ -4,10 +4,10 @@
 }
 
 .technology-form {
-    background: white;
+    background: var(--card-bg);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
 .form-group {
@@ -17,7 +17,7 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #2d3748;
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 1em;
 }
@@ -27,11 +27,12 @@
 .form-group select {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-size: 1em;
     font-family: inherit;
-    color: #2d3748;
+    color: var(--text-primary);
+    background: var(--input-bg);
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
@@ -51,7 +52,7 @@
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #a0aec0;
+    color: var(--text-muted);
 }
 
 .form-actions {
@@ -59,7 +60,7 @@
     gap: 15px;
     margin-top: 30px;
     padding-top: 30px;
-    border-top: 2px solid #e2e8f0;
+    border-top: 2px solid var(--border-color);
 }
 
 .btn {
@@ -92,13 +93,13 @@
 }
 
 .btn-secondary {
-    background: white;
+    background: var(--card-bg);
     color: #667eea;
     border: 2px solid #667eea;
 }
 
 .btn-secondary:hover {
-    background: #f7fafc;
+    background: var(--bg-secondary);
     transform: translateY(-2px);
 }
 

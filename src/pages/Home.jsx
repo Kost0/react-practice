@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import TechnologyCard from '../components/TechnologyCard';
 import QuickActions from '../components/QuickActions';
 import ProgressBar from '../components/ProgressBar';
@@ -6,7 +7,11 @@ import useTechnologies from '../hooks/useTechnologies';
 import './Home.css';
 
 function Home() {
-    const { technologies, updateStatus, updateNotes, updateAllStatuses, progress } = useTechnologies();
+    const { technologies, updateStatus, updateNotes, updateAllStatuses, progress, initializeTechnologies } = useTechnologies();
+
+    useEffect(() => {
+        initializeTechnologies();
+    }, []);
 
     const changeStatus = (id) => {
         const tech = technologies.find(t => t.id === id);

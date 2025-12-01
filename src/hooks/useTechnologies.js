@@ -74,12 +74,20 @@ function useTechnologies() {
         return Math.round((completed / technologies.length) * 100);
     };
 
+    const initializeTechnologies = () => {
+        const saved = localStorage.getItem('technologies');
+        if (!saved || JSON.parse(saved).length === 0) {
+            setTechnologies(initialTechnologies);
+        }
+    };
+
     return {
         technologies,
         updateStatus,
         updateNotes,
         updateAllStatuses,
-        progress: calculateProgress()
+        progress: calculateProgress(),
+        initializeTechnologies
     };
 }
 

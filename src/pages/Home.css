@@ -10,7 +10,7 @@
 
 .app-header h1 {
     margin: 0 0 20px 0;
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 2.5em;
     font-weight: 700;
 }
@@ -28,14 +28,14 @@
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
 .empty-state p {
     font-size: 1.2em;
-    color: #718096;
+    color: var(--text-secondary);
     margin-bottom: 20px;
 }
 
@@ -55,5 +55,5 @@
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0. 3);
 }

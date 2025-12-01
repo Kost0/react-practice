@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import './TechnologyList.css';
 
 function TechnologyList() {
     const [technologies, setTechnologies] = useState([]);
@@ -27,7 +28,9 @@ function TechnologyList() {
                         <p>{tech.description}</p>
                         <div className="technology-meta">
                             <span className={`status status-${tech.status}`}>
-                                {tech.status}
+                                {tech.status === 'completed' && 'Завершено'}
+                                {tech.status === 'in-progress' && 'В процессе'}
+                                {tech.status === 'not-started' && 'Не начато'}
                             </span>
                             <Link to={`/technology/${tech.id}`} className="btn-link">
                                 Подробнее →

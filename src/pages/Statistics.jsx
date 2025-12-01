@@ -13,24 +13,40 @@ function Statistics() {
     });
 
     useEffect(() => {
-        const saved = localStorage.getItem('technologies');
-        if (saved) {
-            const techs = JSON.parse(saved);
-            setTechnologies(techs);
+        const loadTechnologies = () => {
+            const saved = localStorage.getItem('technologies');
+            if (saved) {
+                const techs = JSON.parse(saved);
+                setTechnologies(techs);
 
-            const completed = techs.filter(t => t.status === 'completed').length;
-            const inProgress = techs.filter(t => t.status === 'in-progress').length;
-            const notStarted = techs.filter(t => t.status === 'not-started').length;
-            const progress = techs.length > 0 ? Math.round((completed / techs.length) * 100) : 0;
+                const completed = techs.filter(t => t.status === 'completed').length;
+                const inProgress = techs.filter(t => t.status === 'in-progress').length;
+                const notStarted = techs.filter(t => t.status === 'not-started').length;
+                const progress = techs.length > 0 ? Math.round((completed / techs.length) * 100) : 0;
 
-            setStats({
-                total: techs.length,
-                completed,
-                inProgress,
-                notStarted,
-                progress
-            });
-        }
+                setStats({
+                    total: techs.length,
+                    completed,
+                    inProgress,
+                    notStarted,
+                    progress
+                });
+            }
+        };
+
+        // Загружаем при монтировании
+        loadTechnologies();
+
+        // Обновляем при фокусе на странице
+        const handleFocus = () => {
+            loadTechnologies();
+        };
+
+        window.addEventListener('focus', handleFocus);
+
+        return () => {
+            window.removeEventListener('focus', handleFocus);
+        };
     }, []);
 
     const categoryStats = technologies.reduce((acc, tech) => {

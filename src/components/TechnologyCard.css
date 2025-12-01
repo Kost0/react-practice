@@ -1,9 +1,9 @@
 .technology-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-left: 4px solid transparent;
     position: relative;
@@ -28,14 +28,14 @@
 
 .technology-card h3 {
     margin: 0 0 12px 0;
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 1.5em;
     font-weight: 600;
 }
 
 .technology-card p {
     margin: 8px 0;
-    color: #4a5568;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .technology-card[data-status="completed"] p:last-child {
-    background: #e6f0ff;
-    color: #764ba2;
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
 }
 
 .technology-card[data-status="in-progress"]{
@@ -61,7 +61,7 @@
 }
 
 .technology-card[data-status="in-progress"] p:last-child {
-    background: #f3e6ff;
+    background: rgba(118, 75, 162, 0.15);
     color: #764ba2;
 }
 
@@ -70,6 +70,6 @@
 }
 
 .technology-card[data-status="not-started"] p:last-child {
-    background: #edf2f7;
-    color: #718096;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
 }
