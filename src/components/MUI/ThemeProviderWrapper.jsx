@@ -11,7 +11,7 @@ function ThemeProviderWrapper({ children }) {
 
         const savedAppSettings = localStorage.getItem('appSettings');
         if (savedAppSettings) {
-            const parsed = JSON. parse(savedAppSettings);
+            const parsed = JSON.parse(savedAppSettings);
             return parsed.theme || 'light';
         }
 
@@ -19,13 +19,13 @@ function ThemeProviderWrapper({ children }) {
     });
 
     useEffect(() => {
-        localStorage.setItem('muiThemeMode', mode);
-        localStorage. setItem('appSettings', JSON. stringify({ theme: mode }));
+        localStorage. setItem('muiThemeMode', mode);
+        localStorage.setItem('appSettings', JSON.stringify({ theme: mode }));
         document.body.setAttribute('data-theme', mode);
     }, [mode]);
 
     const toggleTheme = () => {
-        setMode((prevMode) => (prevMode === 'light' ?  'dark' : 'light'));
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
     };
 
     const theme = useMemo(
@@ -37,31 +37,37 @@ function ThemeProviderWrapper({ children }) {
                         main: '#667eea',
                         light: '#8b9df8',
                         dark: '#4a5cc5',
+                        contrastText: '#ffffff', // Белый текст на основном цвете
                     },
                     secondary: {
                         main: '#764ba2',
                         light: '#9b6fc9',
                         dark: '#52357b',
+                        contrastText: '#ffffff',
                     },
                     success: {
                         main: '#48bb78',
                         light: '#68d391',
-                        dark: '#38a169',
+                        dark: '#2f855a',
+                        contrastText: '#ffffff', // Явно указываем белый текст
                     },
                     error: {
                         main: '#f56565',
                         light: '#fc8181',
-                        dark: '#e53e3e',
+                        dark: '#c53030',
+                        contrastText: '#ffffff',
                     },
                     warning: {
                         main: '#ed8936',
                         light: '#f6ad55',
-                        dark: '#dd6b20',
+                        dark: '#c05621',
+                        contrastText: '#ffffff',
                     },
                     info: {
                         main: '#4299e1',
                         light: '#63b3ed',
-                        dark: '#3182ce',
+                        dark: '#2b6cb0',
+                        contrastText: '#ffffff',
                     },
                     ...(mode === 'dark'
                         ? {
@@ -104,6 +110,10 @@ function ThemeProviderWrapper({ children }) {
                     h6: {
                         fontWeight: 600,
                     },
+                    button: {
+                        textTransform: 'none',
+                        fontWeight: 500,
+                    },
                 },
                 components: {
                     MuiButton: {
@@ -113,6 +123,36 @@ function ThemeProviderWrapper({ children }) {
                                 borderRadius: 8,
                                 padding: '8px 16px',
                                 fontWeight: 500,
+                            },
+                            contained: {
+                                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                '&:hover': {
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
+                                },
+                            },
+                            containedSuccess: {
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: '#38a169',
+                                },
+                            },
+                            containedError: {
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: '#c53030',
+                                },
+                            },
+                            containedWarning: {
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: '#c05621',
+                                },
+                            },
+                            containedInfo: {
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: '#2b6cb0',
+                                },
                             },
                         },
                     },
@@ -139,6 +179,26 @@ function ThemeProviderWrapper({ children }) {
                                 '& .MuiOutlinedInput-root': {
                                     borderRadius: 8,
                                 },
+                            },
+                        },
+                    },
+                    MuiAlert: {
+                        styleOverrides: {
+                            filledSuccess: {
+                                color: '#ffffff',
+                                backgroundColor: '#48bb78',
+                            },
+                            filledError: {
+                                color: '#ffffff',
+                                backgroundColor: '#f56565',
+                            },
+                            filledWarning: {
+                                color: '#ffffff',
+                                backgroundColor: '#ed8936',
+                            },
+                            filledInfo: {
+                                color: '#ffffff',
+                                backgroundColor: '#4299e1',
                             },
                         },
                     },
