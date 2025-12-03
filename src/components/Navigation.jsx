@@ -50,7 +50,7 @@ function Navigation() {
                         to="/api-demo"
                         className={location.pathname === '/api-demo' ? 'active' : ''}
                     >
-                        API Demo
+                        API
                     </Link>
                 </li>
                 <li>
@@ -59,6 +59,14 @@ function Navigation() {
                         className={location.pathname === '/search' ? 'active' : ''}
                     >
                         Поиск
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        to="/forms"
+                        className={location.pathname === '/forms' ? 'active' : ''}
+                    >
+                        Формы
                     </Link>
                 </li>
                 <li>

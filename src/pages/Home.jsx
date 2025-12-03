@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import TechnologyCard from '../components/TechnologyCard';
-import QuickActions from '../components/QuickActions';
-import ProgressBar from '../components/ProgressBar';
+import TechnologyCard from '../components/homePage/TechnologyCard.jsx';
+import QuickActions from '../components/homePage/QuickActions.jsx';
+import ProgressBar from '../components/homePage/ProgressBar.jsx';
 import useTechnologies from '../hooks/useTechnologies';
 import './Home.css';
 

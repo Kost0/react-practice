@@ -208,14 +208,64 @@
     background: #2d3748;
 }
 
-[data-theme="dark"] .resources-list {
-    background: #2d3748;
-}
-
-[data-theme="dark"] .existing-resources {
-    background: #2d3748;
+[data-theme="dark"] .loader-header h3 {
+    color: #e2e8f0;
 }
 
 [data-theme="dark"] .add-btn {
+    background: #1a202c;
+    color: #667eea;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .add-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+[data-theme="dark"] .loader-error {
+    background: #742a2a;
+    border-color: #c53030;
+    color: #fc8181;
+}
+
+[data-theme="dark"] .resources-list h4 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .resource-item {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .resource-info h5 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .resource-type {
     background: #2d3748;
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .existing-resources {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .existing-resources h4 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .existing-resources li {
+    border-bottom-color: #4a5568;
+}
+
+[data-theme="dark"] .existing-resources a {
+    color: #90cdf4;
+}
+
+[data-theme="dark"] .loader-info {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .loader-info p {
+    color: #cbd5e0;
 }

@@ -26,7 +26,7 @@ function ApiDemo() {
                     ← Назад на главную
                 </Link>
                 <div className="header-content">
-                    <h1>🌐 Работа с API</h1>
+                    <h1>Работа с API</h1>
                     <button onClick={refetch} className="refresh-btn">
                         🔄 Обновить данные
                     </button>

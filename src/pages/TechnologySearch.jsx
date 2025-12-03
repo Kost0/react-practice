@@ -99,7 +99,7 @@ function TechnologySearch() {
                 <Link to="/" className="back-link">
                     ← Назад на главную
                 </Link>
-                <h1>🔍 Поиск технологий</h1>
+                <h1>Поиск технологий</h1>
             </div>
 
             <div className="search-container">

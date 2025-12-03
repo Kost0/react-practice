@@ -1,0 +1,138 @@
+.forms-demo-page {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-subtitle {
+    color: #718096;
+    margin: 10px 0 0 0;
+    font-size: 1.1em;
+}
+
+.demo-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.demo-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.demo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+    border-color: #667eea;
+}
+
+.demo-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.demo-card h3 {
+    margin: 0 0 12px 0;
+    color: #2d3748;
+    font-size: 1.3em;
+}
+
+.demo-card p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.demo-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.feature-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #f7fafc;
+    border-radius: 12px;
+    font-size: 0.85em;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.demo-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+    background: linear-gradient(90deg, #5568d3 0%, #653a8a 100%);
+}
+
+.demo-content {
+    margin-top: 30px;
+}
+
+.back-to-demos {
+    padding: 10px 20px;
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.back-to-demos:hover {
+    background: #f7fafc;
+    transform: translateX(-3px);
+}
+
+[data-theme="dark"] .page-subtitle {
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .demo-card {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .demo-card:hover {
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .demo-card h3 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .demo-card p {
+    color: #cbd5e0;
+}
+
+[data-theme="dark"] .feature-tag {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .back-to-demos {
+    background: #1a202c;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .back-to-demos:hover {
+    background: #2d3748;
+}

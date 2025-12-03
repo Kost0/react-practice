@@ -8,6 +8,7 @@ import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import ApiDemo from './pages/ApiDemo';
 import TechnologySearch from './pages/TechnologySearch';
+import Forms from "./pages/Forms.jsx";
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/statistics" element={<Statistics />} />
                         <Route path="/settings" element={<Settings />} />
                         <Route path="/api-demo" element={<ApiDemo />} />
+                        <Route path="/forms" element={<Forms />} />
                         <Route path="/search" element={<TechnologySearch />} />
                     </Routes>
                 </main>

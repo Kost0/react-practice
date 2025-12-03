@@ -1,0 +1,334 @@
+.data-import-export {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.data-import-export h1 {
+    margin: 0 0 10px 0;
+    color: #2d3748;
+    font-size: 2em;
+}
+
+.page-description {
+    color: #718096;
+    margin: 0 0 30px 0;
+    line-height: 1.6;
+}
+
+.status-message {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-left: 4px solid;
+}
+
+.status-success {
+    background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+    color: #22543d;
+    border-left-color: #38a169;
+}
+
+.status-error {
+    background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%);
+    color: #742a2a;
+    border-left-color: #e53e3e;
+}
+
+.status-info {
+    background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+    color: #2c5282;
+    border-left-color: #3182ce;
+}
+
+.validation-errors {
+    background: #fff5f5;
+    border: 2px solid #fc8181;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.validation-errors h3 {
+    margin: 0 0 10px 0;
+    color: #c53030;
+}
+
+.validation-errors ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #742a2a;
+}
+
+.validation-errors li {
+    margin-bottom: 5px;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.controls button,
+.file-input-label {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-export {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-export:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.file-input-label {
+    background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    display: inline-block;
+}
+
+.file-input-label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(72, 187, 120, 0.3);
+}
+
+.btn-save {
+    background: linear-gradient(90deg, #ed8936 0%, #dd6b20 100%);
+    color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(237, 137, 54, 0.3);
+}
+
+.btn-load {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-load:hover {
+    background: #f7fafc;
+    transform: translateY(-2px);
+}
+
+.controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.drop-zone {
+    border: 3px dashed #cbd5e0;
+    border-radius: 12px;
+    padding: 60px 20px;
+    text-align: center;
+    background: #f7fafc;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.drop-zone.dragging {
+    border-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    transform: scale(1.02);
+}
+
+.drop-zone-content {
+    pointer-events: none;
+}
+
+.drop-icon {
+    font-size: 4em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.drop-zone p {
+    margin: 5px 0;
+    color: #4a5568;
+    font-size: 1.1em;
+}
+
+.drop-hint {
+    color: #a0aec0;
+    font-size: 0.9em !important;
+}
+
+.technologies-preview {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.technologies-preview h2 {
+    margin: 0 0 20px 0;
+    color: #2d3748;
+    font-size: 1.5em;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.tech-preview-card {
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.tech-preview-card h3 {
+    margin: 0 0 8px 0;
+    color: #2d3748;
+    font-size: 1.1em;
+}
+
+.tech-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: white;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.tech-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.tech-status.status-completed {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.tech-status.status-in-progress {
+    background: #fef3c7;
+    color: #78350f;
+}
+
+.tech-status.status-not-started {
+    background: #e2e8f0;
+    color: #718096;
+}
+
+.more-tech {
+    color: #718096;
+    text-align: center;
+    margin: 15px 0 0 0;
+    font-style: italic;
+}
+
+[data-theme="dark"] .data-import-export h1 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .page-description {
+    color: #a0aec0;
+}
+
+[data-theme="dark"] .status-success {
+    background: linear-gradient(135deg, #2f855a 0%, #276749 100%);
+    color: #9ae6b4;
+    border-left-color: #48bb78;
+}
+
+[data-theme="dark"] .status-error {
+    background: linear-gradient(135deg, #742a2a 0%, #c53030 100%);
+    color: #fc8181;
+    border-left-color: #f56565;
+}
+
+[data-theme="dark"] .status-info {
+    background: linear-gradient(135deg, #2c5282 0%, #2b6cb0 100%);
+    color: #90cdf4;
+    border-left-color: #4299e1;
+}
+
+[data-theme="dark"] .validation-errors {
+    background: #742a2a;
+    border-color: #c53030;
+}
+
+[data-theme="dark"] .validation-errors h3 {
+    color: #fc8181;
+}
+
+[data-theme="dark"] .validation-errors ul {
+    color: #feb2b2;
+}
+
+[data-theme="dark"] .btn-load {
+    background: #1a202c;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .btn-load:hover {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .drop-zone {
+    background: #1a202c;
+    border-color: #4a5568;
+}
+
+[data-theme="dark"] .drop-zone.dragging {
+    border-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+}
+
+[data-theme="dark"] .drop-zone p {
+    color: #cbd5e0;
+}
+
+[data-theme="dark"] .drop-hint {
+    color: #718096;
+}
+
+[data-theme="dark"] .technologies-preview {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .technologies-preview h2 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .tech-preview-card {
+    background: #1a202c;
+}
+
+[data-theme="dark"] .tech-preview-card h3 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .tech-category {
+    background: #2d3748;
+}
+
+[data-theme="dark"] .more-tech {
+    color: #a0aec0;
+}
