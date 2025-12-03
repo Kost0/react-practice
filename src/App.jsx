@@ -9,6 +9,7 @@ import Settings from './pages/Settings';
 import ApiDemo from './pages/ApiDemo';
 import TechnologySearch from './pages/TechnologySearch';
 import Forms from "./pages/Forms.jsx";
+import Notifications from "./pages/Notifications.jsx";
 import './App.css';
 
 function App() {
@@ -18,15 +19,16 @@ function App() {
                 <Navigation />
                 <main className="main-content">
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/technologies" element={<TechnologyList />} />
-                        <Route path="/technology/:techId" element={<TechnologyDetail />} />
-                        <Route path="/add-technology" element={<AddTechnology />} />
-                        <Route path="/statistics" element={<Statistics />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/api-demo" element={<ApiDemo />} />
-                        <Route path="/forms" element={<Forms />} />
-                        <Route path="/search" element={<TechnologySearch />} />
+                        <Route path="/react-practice/" element={<Home />} />
+                        <Route path="/react-practice/technologies" element={<TechnologyList />} />
+                        <Route path="/react-practice/technology/:techId" element={<TechnologyDetail />} />
+                        <Route path="/react-practice/add-technology" element={<AddTechnology />} />
+                        <Route path="/react-practice/statistics" element={<Statistics />} />
+                        <Route path="/react-practice/settings" element={<Settings />} />
+                        <Route path="/react-practice/api-demo" element={<ApiDemo />} />
+                        <Route path="/react-practice/forms" element={<Forms />} />
+                        <Route path="/react-practice/search" element={<TechnologySearch />} />
+                        <Route path="/react-practice/notifications" element={<Notifications />} />
                     </Routes>
                 </main>
             </div>

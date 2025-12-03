@@ -78,7 +78,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад к списку заданий
+                        ← Назад
                     </button>
                     <DeadlineForm
                         technology={exampleTech}
@@ -94,7 +94,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад к списку заданий
+                        ← Назад
                     </button>
                     <BulkEditForm
                         onSave={handleSaveBulkEdit}
@@ -109,7 +109,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад к списку заданий
+                        ← Назад
                     </button>
                     <DataImportExport />
                 </div>

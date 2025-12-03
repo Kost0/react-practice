@@ -4,6 +4,7 @@ import {
     Alert,
     IconButton
 } from '@mui/material';
+
 import CloseIcon from '@mui/icons-material/Close';
 
 function NotificationSnackbar() {

@@ -6,17 +6,26 @@ export const ThemeContext = createContext();
 
 function ThemeProviderWrapper({ children }) {
     const [mode, setMode] = useState(() => {
-        const savedTheme = localStorage.getItem('muiThemeMode');
-        return savedTheme || 'light';
+        const savedMuiTheme = localStorage.getItem('muiThemeMode');
+        if (savedMuiTheme) return savedMuiTheme;
+
+        const savedAppSettings = localStorage.getItem('appSettings');
+        if (savedAppSettings) {
+            const parsed = JSON. parse(savedAppSettings);
+            return parsed.theme || 'light';
+        }
+
+        return 'light';
     });
 
     useEffect(() => {
         localStorage.setItem('muiThemeMode', mode);
-        document.documentElement.setAttribute('data-theme', mode === 'dark' ? 'dark' : 'light');
+        localStorage. setItem('appSettings', JSON. stringify({ theme: mode }));
+        document.body.setAttribute('data-theme', mode);
     }, [mode]);
 
     const toggleTheme = () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => (prevMode === 'light' ?  'dark' : 'light'));
     };
 
     const theme = useMemo(
@@ -34,6 +43,26 @@ function ThemeProviderWrapper({ children }) {
                         light: '#9b6fc9',
                         dark: '#52357b',
                     },
+                    success: {
+                        main: '#48bb78',
+                        light: '#68d391',
+                        dark: '#38a169',
+                    },
+                    error: {
+                        main: '#f56565',
+                        light: '#fc8181',
+                        dark: '#e53e3e',
+                    },
+                    warning: {
+                        main: '#ed8936',
+                        light: '#f6ad55',
+                        dark: '#dd6b20',
+                    },
+                    info: {
+                        main: '#4299e1',
+                        light: '#63b3ed',
+                        dark: '#3182ce',
+                    },
                     ...(mode === 'dark'
                         ? {
                             background: {
@@ -46,7 +75,6 @@ function ThemeProviderWrapper({ children }) {
                             },
                         }
                         : {
-                            // Светлая тема
                             background: {
                                 default: '#f7fafc',
                                 paper: '#ffffff',
@@ -67,6 +95,15 @@ function ThemeProviderWrapper({ children }) {
                         'Arial',
                         'sans-serif',
                     ].join(','),
+                    h3: {
+                        fontWeight: 700,
+                    },
+                    h5: {
+                        fontWeight: 600,
+                    },
+                    h6: {
+                        fontWeight: 600,
+                    },
                 },
                 components: {
                     MuiButton: {
@@ -74,6 +111,8 @@ function ThemeProviderWrapper({ children }) {
                             root: {
                                 textTransform: 'none',
                                 borderRadius: 8,
+                                padding: '8px 16px',
+                                fontWeight: 500,
                             },
                         },
                     },
@@ -81,6 +120,25 @@ function ThemeProviderWrapper({ children }) {
                         styleOverrides: {
                             root: {
                                 borderRadius: 12,
+                                boxShadow: mode === 'dark'
+                                    ? '0 2px 8px rgba(0, 0, 0, 0.4)'
+                                    : '0 2px 8px rgba(0, 0, 0, 0.1)',
+                            },
+                        },
+                    },
+                    MuiDialog: {
+                        styleOverrides: {
+                            paper: {
+                                borderRadius: 12,
+                            },
+                        },
+                    },
+                    MuiTextField: {
+                        styleOverrides: {
+                            root: {
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 8,
+                                },
                             },
                         },
                     },
