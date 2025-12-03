@@ -37,7 +37,7 @@ function ThemeProviderWrapper({ children }) {
                         main: '#667eea',
                         light: '#8b9df8',
                         dark: '#4a5cc5',
-                        contrastText: '#ffffff', // Белый текст на основном цвете
+                        contrastText: '#ffffff',
                     },
                     secondary: {
                         main: '#764ba2',
@@ -49,7 +49,7 @@ function ThemeProviderWrapper({ children }) {
                         main: '#48bb78',
                         light: '#68d391',
                         dark: '#2f855a',
-                        contrastText: '#ffffff', // Явно указываем белый текст
+                        contrastText: '#ffffff',
                     },
                     error: {
                         main: '#f56565',

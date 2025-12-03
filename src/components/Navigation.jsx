@@ -15,7 +15,7 @@ function Navigation() {
             <ul className="nav-menu">
                 <li>
                     <Link
-                        to="/"
+                        to="/react-practice/"
                         className={location.pathname === '/' ? 'active' : ''}
                     >
                         Главная
