@@ -2,7 +2,7 @@ import './QuickActions.css'
 import { useState } from 'react'
 import Modal from './Modal.jsx'
 
-function QuickActions({onMarkAllCompleted, onResetAllStatuses, technologies}) {
+function QuickActions({onMarkAllCompleted, onResetAllStatuses, onPickRandomTechnology, technologies}) {
     const [showExportModal, setShowExportModal] = useState(false);
 
     const handleExport = () => {
@@ -44,6 +44,13 @@ function QuickActions({onMarkAllCompleted, onResetAllStatuses, technologies}) {
                     onClick={onResetAllStatuses}
                 >
                     Сбросить все статусы
+                </button>
+
+                <button
+                    className="action-btn btn-random"
+                    onClick={onPickRandomTechnology}
+                >
+                    Выбрать случайную следующую технологию
                 </button>
 
                 <button

@@ -36,6 +36,20 @@ function Home() {
         updateAllStatuses('not-started');
     };
 
+    const pickRandomTechnology = () => {
+        const notStarted = technologies.filter(tech => tech.status === 'not-started');
+
+        if (notStarted.length === 0) {
+            alert('Все технологии уже изучены');
+            return;
+        }
+
+        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
+        alert(`Следующая технология для изучения: ${randomTech.title}`);
+
+        changeStatus(randomTech.id);
+    };
+
     return (
         <div className="home-page">
             <header className="app-header">
@@ -53,6 +67,7 @@ function Home() {
                 <QuickActions
                     onMarkAllCompleted={markAllCompleted}
                     onResetAllStatuses={resetAllStatuses}
+                    onPickRandomTechnology={pickRandomTechnology}
                     technologies={technologies}
                 />
 
