@@ -52,7 +52,7 @@ function Settings() {
         <div className="page settings-page">
             <div className="page-header">
                 <Link to="/" className="back-link">
-                    ← Назад на главную
+                    Назад на главную
                 </Link>
                 <h1>Настройки приложения</h1>
             </div>
@@ -93,7 +93,7 @@ function Settings() {
                         className="danger-button"
                         onClick={handleClearAllData}
                     >
-                        🗑️ Удалить все данные
+                        Удалить все данные
                     </button>
                 </div>
             </div>

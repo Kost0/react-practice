@@ -42,7 +42,7 @@ function AddTechnology() {
         <div className="page add-technology-page">
             <div className="page-header">
                 <Link to="/technologies" className="back-link">
-                    ← Назад к списку
+                    Назад к списку
                 </Link>
                 <h1>Добавить новую технологию</h1>
             </div>
@@ -120,9 +120,9 @@ function AddTechnology() {
 
                 <div className="form-actions">
                     <button type="submit" className="btn btn-primary">
-                        ✓ Добавить технологию
+                        Добавить технологию
                     </button>
-                    <Link to="/technologies" className="btn btn-secondary">
+                    <Link to="/react-practice/technologies" className="btn btn-secondary">
                         Отмена
                     </Link>
                 </div>

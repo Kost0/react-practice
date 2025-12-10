@@ -23,7 +23,7 @@ function ApiDemo() {
         <div className="page api-demo-page">
             <div className="page-header">
                 <Link to="/" className="back-link">
-                    ← Назад на главную
+                    Назад на главную
                 </Link>
                 <div className="header-content">
                     <h1>Работа с API</h1>

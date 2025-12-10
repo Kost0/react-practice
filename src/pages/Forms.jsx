@@ -33,7 +33,7 @@ function Forms() {
         <div className="page forms-demo-page">
             <div className="page-header">
                 <Link to="/" className="back-link">
-                    ← Назад на главную
+                    Назад на главную
                 </Link>
                 <h1>Работа с формами</h1>
             </div>
@@ -41,33 +41,30 @@ function Forms() {
             {!activeDemo && (
                 <div className="demo-selector">
                     <div className="demo-card" onClick={() => setActiveDemo('deadline')}>
-                        <div className="demo-icon">📅</div>
                         <h3>Сроки изучения</h3>
                         <p>
                             Форма для установки сроков изучения технологии с валидацией
                             дат, расчетом времени и полной доступностью
                         </p>
-                        <button className="demo-btn">Открыть форму →</button>
+                        <button className="demo-btn">Открыть форму</button>
                     </div>
 
                     <div className="demo-card" onClick={() => setActiveDemo('bulk')}>
-                        <div className="demo-icon">✏️</div>
                         <h3>Массовое редактирование</h3>
                         <p>
                             Компонент для выбора нескольких технологий и
                             одновременного изменения их статусов с фильтрацией
                         </p>
-                        <button className="demo-btn">Открыть редактор →</button>
+                        <button className="demo-btn">Открыть редактор</button>
                     </div>
 
                     <div className="demo-card" onClick={() => setActiveDemo('import')}>
-                        <div className="demo-icon">📦</div>
                         <h3>Импорт/Экспорт</h3>
                         <p>
                             Компонент для экспорта данных в JSON и импорта с валидацией
                             структуры, обработкой ошибок и drag-and-drop
                         </p>
-                        <button className="demo-btn">Открыть →</button>
+                        <button className="demo-btn">Открыть</button>
                     </div>
                 </div>
             )}
@@ -78,7 +75,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад
+                        Назад
                     </button>
                     <DeadlineForm
                         technology={exampleTech}
@@ -94,7 +91,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад
+                        Назад
                     </button>
                     <BulkEditForm
                         onSave={handleSaveBulkEdit}
@@ -109,7 +106,7 @@ function Forms() {
                         onClick={() => setActiveDemo(null)}
                         className="back-to-demos"
                     >
-                        ← Назад
+                        Назад
                     </button>
                     <DataImportExport />
                 </div>

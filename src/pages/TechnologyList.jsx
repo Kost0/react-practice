@@ -16,8 +16,8 @@ function TechnologyList() {
         <div className="page">
             <div className="page-header">
                 <h1>Все технологии</h1>
-                <Link to="/add-technology" className="btn btn-primary">
-                    + Добавить технологию
+                <Link to="/react-practice/add-technology" className="btn btn-primary">
+                    Добавить технологию
                 </Link>
             </div>
 
@@ -32,8 +32,8 @@ function TechnologyList() {
                                 {tech.status === 'in-progress' && 'В процессе'}
                                 {tech.status === 'not-started' && 'Не начато'}
                             </span>
-                            <Link to={`/technology/${tech.id}`} className="btn-link">
-                                Подробнее →
+                            <Link to={`/react-practice/technology/${tech.id}`} className="btn-link">
+                                Подробнее
                             </Link>
                         </div>
                     </div>

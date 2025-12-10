@@ -34,7 +34,7 @@ function TechnologyDetail() {
                 <h1>Технология не найдена</h1>
                 <p>Технология с ID {techId} не существует.</p>
                 <Link to="/technologies" className="btn">
-                    ← Назад к списку
+                    Назад к списку
                 </Link>
             </div>
         );

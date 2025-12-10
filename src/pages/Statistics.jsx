@@ -34,10 +34,8 @@ function Statistics() {
             }
         };
 
-        // Загружаем при монтировании
         loadTechnologies();
 
-        // Обновляем при фокусе на странице
         const handleFocus = () => {
             loadTechnologies();
         };

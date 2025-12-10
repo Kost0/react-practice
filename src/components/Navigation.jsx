@@ -8,7 +8,7 @@ function Navigation() {
         <nav className="main-navigation">
             <div className="nav-brand">
                 <Link to="/react-practice/">
-                    <h2>🚀 Трекер технологий</h2>
+                    <h2>Трекер технологий</h2>
                 </Link>
             </div>
 

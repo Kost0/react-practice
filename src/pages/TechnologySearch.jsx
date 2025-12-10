@@ -97,7 +97,7 @@ function TechnologySearch() {
         <div className="page technology-search-page">
             <div className="page-header">
                 <Link to="/" className="back-link">
-                    ← Назад на главную
+                    Назад на главную
                 </Link>
                 <h1>Поиск технологий</h1>
             </div>

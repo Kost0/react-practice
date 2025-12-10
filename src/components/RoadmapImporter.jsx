@@ -205,7 +205,7 @@ function RoadmapImporter({ onImport }) {
 
     return (
         <div className="roadmap-importer">
-            <h3>📚 Импорт дорожной карты</h3>
+            <h3>Импорт дорожной карты</h3>
             <p className="importer-description">
                 Выберите готовую дорожную карту для быстрого добавления технологий
             </p>
