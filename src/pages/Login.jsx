@@ -1,108 +1,84 @@
 import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 function Login({ onLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
-        setIsLoading(true);
 
-        await new Promise(resolve => setTimeout(resolve, 500));
+        if (username === 'admin' && password === 'password') {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('username', username);
 
-        if (!username.trim()) {
-            setError('Введите имя пользователя');
-            setIsLoading(false);
-            return;
-        }
+            onLogin(username);
 
-        if (password.length < 4) {
-            setError('Пароль должен содержать минимум 4 символа');
-            setIsLoading(false);
-            return;
-        }
-
-        const userData = {
-            username,
-            loginTime: new Date().toISOString()
-        };
-
-        localStorage.setItem('authUser', JSON.stringify(userData));
-
-        if (window.showNotification) {
-            window.showNotification(`Добро пожаловать, ${username}!`, 'success');
-        }
-
-        setIsLoading(false);
-
-        if (onLogin) {
-            onLogin(userData);
+            navigate('/react-practice/');
+        } else {
+            setError('Неверное имя пользователя или пароль');
         }
     };
 
     return (
-        <div className="login-page">
+        <div className="page login-page">
             <div className="login-container">
-                <div className="login-header">
+                <div className="login-card">
                     <h1>Вход в систему</h1>
-                    <p>Трекер изучения технологий</p>
-                </div>
+                    <p className="login-subtitle">Трекер изучения технологий</p>
 
-                <form onSubmit={handleSubmit} className="login-form">
                     {error && (
-                        <div className="login-error" role="alert">
-                            ⚠️ {error}
+                        <div className="error-message">
+                            {error}
                         </div>
                     )}
 
-                    <div className="form-group">
-                        <label htmlFor="username">Имя пользователя</label>
-                        <input
-                            id="username"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Введите ваше имя"
-                            disabled={isLoading}
-                            autoFocus
-                        />
-                    </div>
+                    <form onSubmit={handleSubmit} className="login-form">
+                        <div className="form-group">
+                            <label htmlFor="username">Имя пользователя:</label>
+                            <input
+                                id="username"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="admin"
+                                required
+                                autoComplete="username"
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="password">Пароль</label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Минимум 4 символа"
-                            disabled={isLoading}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Пароль:</label>
+                            <input
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="password"
+                                required
+                                autoComplete="current-password"
+                            />
+                        </div>
 
-                    <button
-                        type="submit"
-                        className="login-button"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <>
-                                <span className="spinner-small"></span>
-                                Вход...
-                            </>
-                        ) : (
-                            'Войти'
-                        )}
-                    </button>
+                        <button type="submit" className="login-btn">
+                            Войти
+                        </button>
+                    </form>
 
                     <div className="login-hint">
-                        <p>💡 Подсказка: используйте любое имя и пароль от 4 символов</p>
+                        <p>💡 Для демонстрации используйте:</p>
+                        <p><strong>Логин:</strong> admin</p>
+                        <p><strong>Пароль:</strong> password</p>
                     </div>
-                </form>
+
+                    <div className="login-footer">
+                        <Link to="/react-practice/">← Вернуться на главную</Link>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ function Home() {
 
     const changeStatus = (id) => {
         const tech = technologies.find(t => t.id === id);
-        if (!tech) return;
+        if (! tech) return;
 
         let newStatus;
         if (tech.status === 'not-started') {
@@ -28,65 +28,45 @@ function Home() {
             newStatus = 'not-started';
         }
         updateStatus(id, newStatus);
-
-        if (window.showNotification) {
-            const messages = {
-                'not-started': 'Статус изменен на "Не начато"',
-                'in-progress': 'Статус изменен на "В процессе"',
-                'completed': '🎉 Технология завершена!'
-            };
-            window.showNotification(messages[newStatus], newStatus === 'completed' ? 'success' : 'info');
-        }
     };
 
     const markAllCompleted = () => {
         updateAllStatuses('completed');
-        if (window.showNotification) {
-            window.showNotification('🎉 Все технологии отмечены как завершенные!', 'success');
-        }
     };
 
     const resetAllStatuses = () => {
         updateAllStatuses('not-started');
-        if (window.showNotification) {
-            window.showNotification('Статусы всех технологий сброшены', 'info');
-        }
     };
 
     const pickRandomTechnology = () => {
         const notStarted = technologies.filter(tech => tech.status === 'not-started');
 
         if (notStarted.length === 0) {
-            if (window.showNotification) {
-                window.showNotification('Все технологии уже изучены! 🎓', 'warning');
-            }
+            alert('Все технологии уже изучены');
             return;
         }
 
-        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
-
-        if (window.showNotification) {
-            window.showNotification(`Следующая технология: ${randomTech.title}`, 'info');
-        }
+        const randomTech = notStarted[Math. floor(Math.random() * notStarted.length)];
+        alert(`Следующая технология для изучения: ${randomTech.title}`);
 
         changeStatus(randomTech.id);
     };
 
-    // Фильтрация технологий
+    // Фильтрация технологий по статусу
     const filteredTechnologies = technologies.filter(tech => {
         if (activeFilter === 'all') return true;
-        if (activeFilter === 'completed') return tech.status === 'completed';
-        if (activeFilter === 'in-progress') return tech.status === 'in-progress';
         if (activeFilter === 'not-started') return tech.status === 'not-started';
+        if (activeFilter === 'in-progress') return tech.status === 'in-progress';
+        if (activeFilter === 'completed') return tech.status === 'completed';
         return true;
     });
 
-    // Подсчет для фильтров
-    const filterCounts = {
+    // Подсчет количества технологий по статусам
+    const counts = {
         all: technologies.length,
-        completed: technologies.filter(t => t.status === 'completed').length,
+        notStarted: technologies.filter(t => t.status === 'not-started').length,
         inProgress: technologies.filter(t => t.status === 'in-progress').length,
-        notStarted: technologies.filter(t => t.status === 'not-started').length
+        completed: technologies.filter(t => t. status === 'completed').length
     };
 
     return (
@@ -113,13 +93,13 @@ function Home() {
                 <FilterButtons
                     activeFilter={activeFilter}
                     onFilterChange={setActiveFilter}
-                    counts={filterCounts}
+                    counts={counts}
                 />
 
                 <div className="technology-grid">
                     {filteredTechnologies.map(tech => (
                         <TechnologyCard
-                            key={tech.id}
+                            key={tech. id}
                             technology={tech}
                             onStatusChange={changeStatus}
                             onNotesChange={updateNotes}
@@ -129,7 +109,7 @@ function Home() {
 
                 {technologies.length === 0 && (
                     <div className="empty-state">
-                        <p>У вас пока нет технологий для изучения.</p>
+                        <p>У вас пока нет технологий для изучения. </p>
                         <Link to="/react-practice/add-technology" className="btn btn-primary">
                             Добавить первую технологию
                         </Link>

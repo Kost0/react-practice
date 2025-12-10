@@ -5,7 +5,7 @@
     margin-bottom: 30px;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index:  100;
 }
 
 .nav-brand {
@@ -26,9 +26,10 @@
 .nav-menu {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin:  0;
     display: flex;
     gap: 5px;
+    align-items: center;
 }
 
 .nav-menu li {
@@ -46,7 +47,7 @@
     border-bottom: 3px solid transparent;
 }
 
-.nav-menu a:hover {
+. nav-menu a:hover {
     color: #667eea;
     background: rgba(102, 126, 234, 0.05);
 }
@@ -55,6 +56,37 @@
     color: #667eea;
     border-bottom-color: #667eea;
     background: rgba(102, 126, 234, 0.05);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+    padding: 10px 15px;
+}
+
+.username {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor:  pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+
+.logout-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -68,6 +100,22 @@
 
     .nav-menu a {
         padding: 12px 12px;
+        font-size:  0.9em;
+    }
+
+    .user-info {
+        width: 100%;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .username {
         font-size: 0.9em;
+    }
+
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 0.85em;
     }
 }

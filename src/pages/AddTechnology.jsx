@@ -12,6 +12,8 @@ function AddTechnology() {
         notes: ''
     });
 
+    const [notification, setNotification] = useState(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -20,32 +22,79 @@ function AddTechnology() {
         }));
     };
 
+    const showNotification = (message, type) => {
+        setNotification({ message, type });
+        setTimeout(() => {
+            setNotification(null);
+        }, 3000);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const saved = localStorage.getItem('technologies');
-        const technologies = saved ? JSON.parse(saved) : [];
+        try {
+            const saved = localStorage.getItem('technologies');
+            const technologies = saved ? JSON.parse(saved) : [];
 
-        const newTechnology = {
-            id: Date.now(),
-            ...formData
-        };
+            // Проверка на дублирование
+            const isDuplicate = technologies.some(
+                tech => tech.title.toLowerCase() === formData.title.toLowerCase()
+            );
 
-        technologies.push(newTechnology);
-        localStorage.setItem('technologies', JSON.stringify(technologies));
+            if (isDuplicate) {
+                showNotification('Технология с таким названием уже существует! ', 'error');
+                return;
+            }
 
-        alert('Технология успешно добавлена!');
-        navigate('/technologies');
+            const newTechnology = {
+                id: Date.now(),
+                ... formData
+            };
+
+            technologies.push(newTechnology);
+            localStorage. setItem('technologies', JSON.stringify(technologies));
+
+            showNotification('Технология успешно добавлена!', 'success');
+
+            // Очищаем форму
+            setFormData({
+                title: '',
+                description:  '',
+                category: 'frontend',
+                status: 'not-started',
+                notes: ''
+            });
+
+            // Перенаправляем через 1. 5 секунды
+            setTimeout(() => {
+                navigate('/react-practice/technologies');
+            }, 1500);
+
+        } catch (error) {
+            showNotification('Произошла ошибка при добавлении технологии! ', 'error');
+        }
     };
 
     return (
         <div className="page add-technology-page">
             <div className="page-header">
-                <Link to="/technologies" className="back-link">
-                    Назад к списку
+                <Link to="/react-practice/technologies" className="back-link">
+                    ← Назад к списку
                 </Link>
                 <h1>Добавить новую технологию</h1>
             </div>
+
+            {notification && (
+                <div className={`notification notification-${notification.type}`}>
+                    <span>{notification.message}</span>
+                    <button
+                        onClick={() => setNotification(null)}
+                        className="notification-close"
+                    >
+                        ✕
+                    </button>
+                </div>
+            )}
 
             <form onSubmit={handleSubmit} className="technology-form">
                 <div className="form-group">
@@ -56,7 +105,7 @@ function AddTechnology() {
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
-                        placeholder="Например: React Hooks"
+                        placeholder="Например:  React Hooks"
                         required
                     />
                 </div>
@@ -113,7 +162,7 @@ function AddTechnology() {
                         name="notes"
                         value={formData.notes}
                         onChange={handleChange}
-                        placeholder="Добавьте заметки о том, почему хотите изучить эту технологию"
+                        placeholder="Дополнительные заметки о технологии"
                         rows="3"
                     />
                 </div>

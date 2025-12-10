@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
-function Navigation() {
+function Navigation({ isLoggedIn, username, onLogout }) {
     const location = useLocation();
 
     return (
@@ -16,7 +16,7 @@ function Navigation() {
                 <li>
                     <Link
                         to="/react-practice/"
-                        className={location.pathname === '/' ? 'active' : ''}
+                        className={location.pathname === '/react-practice/' ? 'active' : ''}
                     >
                         Главная
                     </Link>
@@ -24,23 +24,37 @@ function Navigation() {
                 <li>
                     <Link
                         to="/react-practice/technologies"
-                        className={location.pathname === '/technologies' ? 'active' : ''}
+                        className={location. pathname === '/react-practice/technologies' ? 'active' : ''}
                     >
                         Все технологии
                     </Link>
                 </li>
-                <li>
-                    <Link
-                        to="/react-practice/add-technology"
-                        className={location.pathname === '/add-technology' ? 'active' : ''}
-                    >
-                        Добавить технологию
-                    </Link>
-                </li>
+
+                {isLoggedIn ?  (
+                    <>
+                        <li>
+                            <Link
+                                to="/react-practice/add-technology"
+                                className={location.pathname === '/react-practice/add-technology' ?  'active' : ''}
+                            >
+                                Добавить технологию
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/react-practice/dashboard"
+                                className={location. pathname === '/react-practice/dashboard' ? 'active' : ''}
+                            >
+                                Панель управления
+                            </Link>
+                        </li>
+                    </>
+                ) : null}
+
                 <li>
                     <Link
                         to="/react-practice/statistics"
-                        className={location.pathname === '/statistics' ? 'active' : ''}
+                        className={location. pathname === '/react-practice/statistics' ? 'active' : ''}
                     >
                         Статистика
                     </Link>
@@ -48,7 +62,7 @@ function Navigation() {
                 <li>
                     <Link
                         to="/react-practice/api-demo"
-                        className={location.pathname === '/api-demo' ? 'active' : ''}
+                        className={location. pathname === '/react-practice/api-demo' ? 'active' : ''}
                     >
                         API
                     </Link>
@@ -56,7 +70,7 @@ function Navigation() {
                 <li>
                     <Link
                         to="/react-practice/search"
-                        className={location.pathname === '/search' ? 'active' : ''}
+                        className={location. pathname === '/react-practice/search' ? 'active' : ''}
                     >
                         Поиск
                     </Link>
@@ -64,27 +78,37 @@ function Navigation() {
                 <li>
                     <Link
                         to="/react-practice/forms"
-                        className={location.pathname === '/forms' ? 'active' : ''}
+                        className={location. pathname === '/react-practice/forms' ? 'active' : ''}
                     >
                         Формы
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/react-practice/notifications"
-                        className={location.pathname === '/notifications' ?  'active' : ''}
-                    >
-                        Уведомления
-                    </Link>
-                </li>
-                <li>
-                    <Link
                         to="/react-practice/settings"
-                        className={location.pathname === '/settings' ? 'active' : ''}
+                        className={location.pathname === '/react-practice/settings' ? 'active' : ''}
                     >
                         Настройки
                     </Link>
                 </li>
+
+                {isLoggedIn ?  (
+                    <li className="user-info">
+                        <span className="username">{username}</span>
+                        <button onClick={onLogout} className="logout-btn">
+                            Выйти
+                        </button>
+                    </li>
+                ) : (
+                    <li>
+                        <Link
+                            to="/react-practice/login"
+                            className={location.pathname === '/react-practice/login' ? 'active' :  ''}
+                        >
+                            Войти
+                        </Link>
+                    </li>
+                )}
             </ul>
         </nav>
     );
