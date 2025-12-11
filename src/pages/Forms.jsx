@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DeadlineForm from '../components/forms/DeadlineForm';
 import BulkEditForm from '../components/forms/BulkEditForm';
@@ -7,22 +7,32 @@ import './Forms.css';
 
 function Forms() {
     const [activeDemo, setActiveDemo] = useState(null);
+    const [technologies, setTechnologies] = useState([]);
 
-    const exampleTech = {
-        id: 1,
-        title: 'React',
-        description: 'Библиотека для создания пользовательских интерфейсов',
-        category: 'frontend'
-    };
+    useEffect(() => {
+        const saved = localStorage.getItem('technologies');
+        if (saved) {
+            setTechnologies(JSON.parse(saved));
+        }
+    }, []);
 
     const handleSaveDeadline = (updatedTech) => {
         console.log('Сохранены сроки:', updatedTech);
+
+        const updatedTechnologies = technologies.map(tech =>
+            tech.id === updatedTech.id ?  updatedTech : tech
+        );
+        setTechnologies(updatedTechnologies);
+        localStorage.setItem('technologies', JSON.stringify(updatedTechnologies));
+
         alert('Сроки изучения сохранены!');
         setActiveDemo(null);
     };
 
     const handleSaveBulkEdit = (updatedTechnologies) => {
         console.log('Обновлены технологии:', updatedTechnologies);
+        setTechnologies(updatedTechnologies);
+        localStorage.setItem('technologies', JSON.stringify(updatedTechnologies));
     };
 
     const handleCancel = () => {
@@ -78,7 +88,7 @@ function Forms() {
                         Назад
                     </button>
                     <DeadlineForm
-                        technology={exampleTech}
+                        technologies={technologies}
                         onSave={handleSaveDeadline}
                         onCancel={handleCancel}
                     />

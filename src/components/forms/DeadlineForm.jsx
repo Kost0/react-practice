@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import './DeadlineForm.css';
+import './DeadlineForm.css'
 
-function DeadlineForm({ technology, onSave, onCancel }) {
+function DeadlineForm({ technologies, onSave, onCancel }) {
+    const [selectedTechId, setSelectedTechId] = useState('');
     const [formData, setFormData] = useState({
-        startDate: technology.startDate || '',
-        deadline: technology.deadline || '',
-        estimatedHours: technology.estimatedHours || '',
-        priority: technology.priority || 'medium',
-        notes: technology.notes || ''
+        startDate: '',
+        deadline: '',
+        estimatedHours: '',
+        priority: 'medium',
+        notes: ''
     });
 
     const [errors, setErrors] = useState({});
@@ -15,18 +16,37 @@ function DeadlineForm({ technology, onSave, onCancel }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
 
+    useEffect(() => {
+        if (selectedTechId) {
+            const tech = technologies.find(t => t.id === parseInt(selectedTechId));
+            if (tech) {
+                setFormData({
+                    startDate: tech.startDate || '',
+                    deadline: tech. deadline || '',
+                    estimatedHours: tech.estimatedHours || '',
+                    priority:  tech.priority || 'medium',
+                    notes: tech.notes || ''
+                });
+            }
+        }
+    }, [selectedTechId, technologies]);
+
     const validateForm = () => {
         const newErrors = {};
+
+        if (!selectedTechId) {
+            newErrors.technology = 'Выберите технологию';
+        }
 
         if (!formData.startDate) {
             newErrors.startDate = 'Дата начала обязательна';
         } else {
-            const startDate = new Date(formData.startDate);
+            const startDate = new Date(formData. startDate);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
             if (startDate < today) {
-                newErrors.startDate = 'Дата начала не может быть в прошлом';
+                newErrors. startDate = 'Дата начала не может быть в прошлом';
             }
         }
 
@@ -42,7 +62,7 @@ function DeadlineForm({ technology, onSave, onCancel }) {
             }
 
             if (formData.startDate) {
-                const startDate = new Date(formData.startDate);
+                const startDate = new Date(formData. startDate);
                 if (deadlineDate <= startDate) {
                     newErrors.deadline = 'Дедлайн должен быть позже даты начала';
                 }
@@ -54,7 +74,7 @@ function DeadlineForm({ technology, onSave, onCancel }) {
         } else if (formData.estimatedHours < 1) {
             newErrors.estimatedHours = 'Минимум 1 час';
         } else if (formData.estimatedHours > 1000) {
-            newErrors.estimatedHours = 'Максимум 1000 часов';
+            newErrors. estimatedHours = 'Максимум 1000 часов';
         }
 
         setErrors(newErrors);
@@ -63,7 +83,7 @@ function DeadlineForm({ technology, onSave, onCancel }) {
 
     useEffect(() => {
         validateForm();
-    }, [formData]);
+    }, [formData, selectedTechId]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -73,18 +93,22 @@ function DeadlineForm({ technology, onSave, onCancel }) {
         }));
     };
 
-    // Обработчик отправки формы
+    const handleTechnologyChange = (e) => {
+        setSelectedTechId(e.target.value);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (isFormValid) {
             setIsSubmitting(true);
 
-            // Имитация отправки
             await new Promise(resolve => setTimeout(resolve, 500));
 
+            const selectedTech = technologies.find(t => t.id === parseInt(selectedTechId));
+
             onSave({
-                ...technology,
+                ...selectedTech,
                 ...formData
             });
 
@@ -93,11 +117,18 @@ function DeadlineForm({ technology, onSave, onCancel }) {
 
             setTimeout(() => {
                 setSubmitSuccess(false);
+                setSelectedTechId('');
+                setFormData({
+                    startDate: '',
+                    deadline:  '',
+                    estimatedHours: '',
+                    priority: 'medium',
+                    notes:  ''
+                });
             }, 2000);
         }
     };
 
-    // Вычисление количества дней до дедлайна
     const calculateDaysLeft = () => {
         if (!formData.startDate || !formData.deadline) return null;
 
@@ -113,104 +144,87 @@ function DeadlineForm({ technology, onSave, onCancel }) {
 
     return (
         <div className="deadline-form-container">
-            <div
-                role="status"
-                aria-live="polite"
-                aria-atomic="true"
-                className="sr-only"
-            >
-                {isSubmitting && 'Сохранение сроков изучения...'}
-                {submitSuccess && 'Сроки успешно сохранены!'}
-            </div>
-
-            {submitSuccess && (
-                <div className="success-banner" role="alert">
-                    ✓ Сроки изучения успешно сохранены!
-                </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="deadline-form" noValidate>
-                <h2>Установка сроков изучения: {technology.title}</h2>
+            <form onSubmit={handleSubmit} className="deadline-form">
+                <h2>Установить сроки изучения</h2>
 
                 <div className="form-group">
-                    <label htmlFor="startDate" className="required">
-                        Дата начала изучения
+                    <label htmlFor="technology">
+                        Технология <span className="required">*</span>
+                    </label>
+                    <select
+                        id="technology"
+                        value={selectedTechId}
+                        onChange={handleTechnologyChange}
+                        className={errors.technology ? 'error' : ''}
+                    >
+                        <option value="">Выберите технологию... </option>
+                        {technologies. map(tech => (
+                            <option key={tech.id} value={tech.id}>
+                                {tech.title} ({tech.category})
+                            </option>
+                        ))}
+                    </select>
+                    {errors.technology && (
+                        <span className="error-message">{errors.technology}</span>
+                    )}
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="startDate">
+                        Дата начала <span className="required">*</span>
                     </label>
                     <input
+                        type="date"
                         id="startDate"
                         name="startDate"
-                        type="date"
                         value={formData.startDate}
                         onChange={handleChange}
                         className={errors.startDate ? 'error' : ''}
-                        aria-required="true"
-                        aria-invalid={!!errors.startDate}
-                        aria-describedby={errors.startDate ? 'startDate-error' : undefined}
-                        disabled={isSubmitting}
                     />
                     {errors.startDate && (
-                        <span id="startDate-error" className="error-message" role="alert">
-                            {errors.startDate}
-                        </span>
+                        <span className="error-message">{errors.startDate}</span>
                     )}
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="deadline" className="required">
-                        Дедлайн
+                    <label htmlFor="deadline">
+                        Дедлайн <span className="required">*</span>
                     </label>
                     <input
+                        type="date"
                         id="deadline"
                         name="deadline"
-                        type="date"
                         value={formData.deadline}
                         onChange={handleChange}
                         className={errors.deadline ? 'error' : ''}
-                        aria-required="true"
-                        aria-invalid={!!errors.deadline}
-                        aria-describedby={errors.deadline ? 'deadline-error' : 'deadline-help'}
-                        disabled={isSubmitting}
                     />
                     {errors.deadline && (
-                        <span id="deadline-error" className="error-message" role="alert">
-                            {errors.deadline}
-                        </span>
-                    )}
-                    {!errors.deadline && daysLeft !== null && (
-                        <span id="deadline-help" className="help-text">
-                            Время на изучение: {daysLeft} {daysLeft === 1 ? 'день' : 'дней'}
-                        </span>
+                        <span className="error-message">{errors.deadline}</span>
                     )}
                 </div>
 
+                {daysLeft !== null && (
+                    <div className="days-info">
+                        Запланировано на <strong>{daysLeft}</strong> {daysLeft === 1 ?  'день' : 'дней'}
+                    </div>
+                )}
+
                 <div className="form-group">
-                    <label htmlFor="estimatedHours" className="required">
-                        Предполагаемое время (часов)
+                    <label htmlFor="estimatedHours">
+                        Предполагаемое время (часов) <span className="required">*</span>
                     </label>
                     <input
+                        type="number"
                         id="estimatedHours"
                         name="estimatedHours"
-                        type="number"
-                        min="1"
-                        max="1000"
                         value={formData.estimatedHours}
                         onChange={handleChange}
-                        className={errors.estimatedHours ? 'error' : ''}
-                        placeholder="Например: 40"
-                        aria-required="true"
-                        aria-invalid={!!errors.estimatedHours}
-                        aria-describedby={errors.estimatedHours ? 'hours-error' : 'hours-help'}
-                        disabled={isSubmitting}
+                        min="1"
+                        max="1000"
+                        className={errors.estimatedHours ?  'error' : ''}
                     />
                     {errors.estimatedHours && (
-                        <span id="hours-error" className="error-message" role="alert">
-                            {errors.estimatedHours}
-                        </span>
-                    )}
-                    {!errors.estimatedHours && formData.estimatedHours && daysLeft && (
-                        <span id="hours-help" className="help-text">
-                            Примерно {Math.ceil(formData.estimatedHours / daysLeft)} часов в день
-                        </span>
+                        <span className="error-message">{errors.estimatedHours}</span>
                     )}
                 </div>
 
@@ -221,54 +235,49 @@ function DeadlineForm({ technology, onSave, onCancel }) {
                         name="priority"
                         value={formData.priority}
                         onChange={handleChange}
-                        disabled={isSubmitting}
-                        aria-describedby="priority-help"
                     >
                         <option value="low">Низкий</option>
                         <option value="medium">Средний</option>
                         <option value="high">Высокий</option>
-                        <option value="critical">Критичный</option>
                     </select>
-                    <span id="priority-help" className="help-text">
-                        Укажите важность изучения этой технологии
-                    </span>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="notes">Дополнительные заметки</label>
+                    <label htmlFor="notes">Заметки</label>
                     <textarea
                         id="notes"
                         name="notes"
                         value={formData.notes}
                         onChange={handleChange}
-                        rows="3"
-                        placeholder="Любые заметки о планировании изучения..."
-                        disabled={isSubmitting}
-                        aria-describedby="notes-help"
+                        rows="4"
+                        placeholder="Дополнительная информация о плане изучения..."
                     />
-                    <span id="notes-help" className="help-text">
-                        Необязательное поле
-                    </span>
                 </div>
 
                 <div className="form-actions">
                     <button
                         type="submit"
-                        className="btn-primary"
                         disabled={!isFormValid || isSubmitting}
-                        aria-busy={isSubmitting}
+                        className="btn-primary"
                     >
-                        {isSubmitting ? 'Сохранение...' : 'Сохранить сроки'}
+                        {isSubmitting ? 'Сохранение...' : 'Сохранить'}
                     </button>
-                    <button
-                        type="button"
-                        onClick={onCancel}
-                        className="btn-secondary"
-                        disabled={isSubmitting}
-                    >
-                        Отмена
-                    </button>
+                    {onCancel && (
+                        <button
+                            type="button"
+                            onClick={onCancel}
+                            className="btn-secondary"
+                        >
+                            Отмена
+                        </button>
+                    )}
                 </div>
+
+                {submitSuccess && (
+                    <div className="success-message">
+                        Сроки успешно сохранены!
+                    </div>
+                )}
             </form>
         </div>
     );
